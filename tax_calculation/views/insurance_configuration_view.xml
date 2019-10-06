@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="insurance_configuration_form" model="ir.ui.view">
+            <field name="name">insurance.configuration.from</field>
+            <field name="model">insurance.configuration</field>
+            <field name="arch" type="xml">
+                <form string="Tax">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="max_limit"/>
+                            <field name="year"/>
+                            <field name="insurance_wage_type"/>
+                            <field name="employee_ratio"/>
+                            <field name="company_ratio"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="insurance_configuration_tree" model="ir.ui.view">
+            <field name="name">insurance.configuration.tree</field>
+            <field name="model">insurance.configuration</field>
+            <field name="arch" type="xml">
+                <tree>
+                            <field name="name"/>
+                            <field name="max_limit"/>
+                            <field name="year"/>
+                            <field name="insurance_wage_type"/>
+                            <field name="employee_ratio"/>
+                            <field name="company_ratio"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_insurance_configuration_view" model="ir.actions.act_window">
+            <field name="name">Insurance Configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">insurance.configuration</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+            </field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="menu_insurance_configuration" name="Insurance Configuration" parent="hr_payroll.menu_hr_payroll_configuration" action="action_insurance_configuration_view" sequence="12"/>
+
+    </data>
+</openerp>

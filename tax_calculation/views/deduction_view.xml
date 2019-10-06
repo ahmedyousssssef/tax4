@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="employee_punishment_view_form" model="ir.ui.view">
+            <field name="name">employee.punishment.form</field>
+            <field name="model">employee.punishment</field>
+            <field name="arch" type="xml">
+                <form string="Current Contract">
+                    <header>
+                        <button name="department_manager_approve" string="Department Manager Approve"  type="object" class="oe_highlight" attrs="{'invisible': [('department_manager_usr','=',False)]}" />
+                        <button name="general_manager_approve" string="General Manager Approve" states="dep_man" type="object" class="oe_highlight" groups="starmatic_purchasing.group_general_manager"/>
+                        <button name="button_cancel" states="draft,dep_man" string="Cancel" type="object" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,dep_man,gen_man"/>
+                        <field name="department_manager_usr" invisible="1"/>
+                    </header>
+                    <sheet>
+
+                        <group>
+                            <group>
+                                <field name="department_id"/>
+                                <field name="employee_id"/>
+                                <field name="date_from"/>
+                            </group>
+                            <group>
+                                <field name="deduction_type"/>
+                                <field name="value"/>
+                                <field name="date_to"/>
+                            </group>
+                        </group>
+                        <!--<group>-->
+                        <div >
+                            <label for="reason"/>
+                            <field name="reason"/>
+                        </div>
+                        <!--</group>-->
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="employee_punishment_view_tree" model="ir.ui.view">
+            <field name="name">employee.punishment.tree</field>
+            <field name="model">employee.punishment</field>
+            <field name="arch" type="xml">
+                <tree string="Punishment">
+                    <field name="department_id"/>
+                    <field name="employee_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--<record id="action_employee_punishment" model="ir.actions.act_window">-->
+            <!--<field name="name">Employee Punishment</field>-->
+            <!--<field name="res_model">employee.punishment</field>-->
+            <!--<field name="view_type">form</field>-->
+            <!--<field name="view_mode">tree,form</field>-->
+        <!--</record>-->
+
+        <record id="action_employee_punishment" model="ir.actions.act_window">
+            <field name="name">Employee Punishment</field>
+            <field name="res_model">employee.punishment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new Employee Punishment
+              </p><p>
+                Odoo's Punishment structure is used to manage all punishment
+                related to employees .
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_punishment"
+              name="Deduction"
+              parent="hr_payroll.menu_hr_payroll_root"
+              sequence="16"
+              action="action_employee_punishment" />
+  </data>
+</openerp>
